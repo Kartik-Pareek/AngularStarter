@@ -1,0 +1,94 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'push'"
+      [opened]="(isHandset$ | async) === true">
+    <mat-toolbar><mat-icon class="sideMenuIcon">home</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;Menu</mat-toolbar>
+    <mat-nav-list>
+    
+      <div *ngFor="let list of menuList;">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon >{{list.icon}}</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;{{list.title}}
+        </mat-expansion-panel-header>
+  
+        <div *ngFor="let subList of list.subMenu">
+          <a mat-list-item  href="#">&nbsp;&nbsp;&nbsp;&nbsp;{{subList.title}}</a>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-expansion-panel>
+      <mat-divider></mat-divider>
+      </div>
+    
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Dexpess</span>
+      
+      
+        <ul class="navbar-nav mr-auto" style="margin-left:800px ;" >
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      
+        <div *ngIf="loggedIn()" class="dropdown">
+          <a class="dropdown-toggle text-light">
+            Welcome User
+          </a>
+        
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+          </div>
+        </div>
+      
+        <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+          <input class="form-control mr-sm-2" type="text" name="username" 
+            placeholder="Username" required [(ngModel)]="model.username">
+          <input class="form-control mr-sm-2" type="password" name="password" 
+            placeholder="Password" required [(ngModel)]="model.password">
+          <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+        </form>
+      
+     
+    </mat-toolbar>
+   
+    <!-- <div class="container mt-5">
+      <div *ngIf="!registerMode" style="text-align: center">
+        <h1>Find your match</h1>
+        <p class="lead">Come on in to view your matches... All you need to do is sign up!</p>
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
+          <button class="btn btn-info btn-lg">Learn more</button>
+        </div>
+      </div>
+    
+      <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+
+
+    <app-company-profile></app-company-profile>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>

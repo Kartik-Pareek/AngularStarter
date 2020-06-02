@@ -1,0 +1,23 @@
+.MasterClass{
+  margin-bottom: 50px; margin-top: 20px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #D3D3D3;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #D3D3D3;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #D3D3D3;
+  }
+
+  .wrapper {
+    text-align: center;
+}
+.button {
+    position: absolute;
+    top: 50%;
+}
